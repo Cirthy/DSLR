@@ -3,7 +3,7 @@
 
 #define 	DATAS_PATHFILE 		"../resources/dataset_train.csv"
 
-
+#include    <math.h>
 
 typedef enum hand 		{ Right , Left } hand;
 typedef enum house 		{ Ravenclaw , Slytherin , Gryffindor , Hufflepuff } house;
@@ -28,17 +28,14 @@ typedef struct student
 
 
 
-
-
-
 // MANAGMENT.CPP //////////
+
 void 		get_string_until_comma(FILE* const fd , char* str);
 void 		print_house(student* const s);
 void 		print_best_hand(student* const s);
 void 		print_birday_date(student* const s);
 
 void 		print_student(student* const s);
-
 
 
 // TRAINER.CPP ////////////
@@ -56,8 +53,11 @@ double 		mean(student* students, int size, features feature);
 double 		std_d(student* students, int size, features feature);
 
 
+// CALCULUS.CPP
 
-
+double  cost(double* theta, student* students, int m, house house);
+double  prob(double* theta, double notes[13]);
+double  partial_derivative(int j, double* theta, student* students, int m, house house);
 
 
 
