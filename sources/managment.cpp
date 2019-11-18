@@ -4,10 +4,6 @@
 #include 	"trainer.h"
 
 
-
-
-
-
 void 		get_string_until_comma(FILE* const fd , char* str)
 {
 	char 	c;

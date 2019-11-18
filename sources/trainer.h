@@ -5,6 +5,9 @@
 
 #include    <math.h>
 
+#define     ITERATIONS      10
+#define     LEARNING_RATE   0.1
+
 typedef enum hand 		{ Right , Left } hand;
 typedef enum house 		{ Ravenclaw , Slytherin , Gryffindor , Hufflepuff } house;
 typedef enum features 	{ arithmancy , astronomy , herbology , defenseAgainstTheDarkArts , divination , muggleStudies , ancientRunes , historyOfMagic , transfiguration , potions , careOfMagicalCreatures , charms , flying } features;

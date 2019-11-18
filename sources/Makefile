@@ -15,5 +15,3 @@ fclean :
 	rm -f $(NAME)
 
 re : fclean all
-
-
