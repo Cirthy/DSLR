@@ -121,8 +121,8 @@ int 		get_size_of_datas(const char* const fileName)
 
 void    improve_weights(double weights[4][14], student* students, int m)
 {
-    for(int house = 0 ; house < 4 ; house++)
-        improve_thetas(weights[house], students, m, house);
+    for(int h = 0 ; h < 4 ; h++)
+        improve_thetas(weights[h], students, m, (house)h);
 }
 
 

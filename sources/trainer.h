@@ -12,7 +12,7 @@
 
 
 typedef enum hand 		{ Right , Left } hand;
-typedef enum house 		{ Ravenclaw , Slytherin , Gryffindor , Hufflepuff } house;
+typedef enum house 		{ Ravenclaw = 0 , Slytherin , Gryffindor , Hufflepuff } house;
 typedef enum features 	{ arithmancy , astronomy , herbology , defenseAgainstTheDarkArts , divination , muggleStudies , ancientRunes , historyOfMagic , transfiguration , potions , careOfMagicalCreatures , charms , flying } features;
 
 typedef struct date
@@ -50,7 +50,7 @@ void 		print_student(student* const s);
 student* 	get_datas(int const size , const char* const fileName);
 int 		get_size_of_datas(const char* const fileName);
 void        improve_weights(double weights[4][14], student* students, int m);
-void        improve_thetas(double thetas[14], student* students, int m);
+void        improve_thetas(double thetas[14], student* students, int m, house house);
 
 
 // UTIL.CPP ///////////////

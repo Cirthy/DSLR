@@ -14,7 +14,14 @@ int main(int argc, char const *argv[])
 
 	init_weights(weights);
     for(int i = 0 ; i < ITERATIONS ; i++)
+    {
+    	printf("\ntour %d\n",i);
         improve_weights(weights, students, size);
+        for(int w = 0 ; w < 14 ; w++)
+        	printf("%lf\n", weights[0][w]);
+
+    }
+
 
 	return 0;
 }
