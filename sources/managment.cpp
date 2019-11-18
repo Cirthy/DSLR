@@ -54,7 +54,7 @@ void 		print_best_hand(student* const s)
 }
 
 
-void 		print_birday_date(student* const s)
+void 		print_birthday_date(student* const s)
 {
 	printf("Born the %d ", s->birthday.day);
 	switch ((s->birthday).month)
