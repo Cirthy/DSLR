@@ -119,14 +119,14 @@ int 		get_size_of_datas(const char* const fileName)
 }
 
 
-void    improve_weights(double weights[4][14], student* student, int m)
+void    improve_weights(double weights[4][14], student* students, int m)
 {
     for(int house = 0 ; house < 4 ; house++)
-        improve_thetas(weights[house], students, m);
+        improve_thetas(weights[house], students, m, house);
 }
 
 
-void    improve_thetas(double thetas[14], student* students, int m)
+void    improve_thetas(double thetas[14], student* students, int m, house house)
 {
     double  tmp[14];
     int     i;

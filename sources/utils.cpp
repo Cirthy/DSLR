@@ -58,18 +58,16 @@ double mean(student* students, int size, features feature)
 
 double std_d(student* students, int size, features feature)
 {
-	float 	sum = 0;
+	float 	sum = 0.0;
 	float 	m = mean(students, size, feature);
 
-	for(int i = 0 ; i < size ; i++ )
-	{
-		sum += (students[i].notes[feature] - m)*(students[i].notes[feature] - m);
-	}
+	for(int i = 0 ; i < size ; i++)
+		sum += (students[i].notes[feature] - m) * (students[i].notes[feature] - m);
 	sum /= size;
 	return sqrt(sum);
 }
 
 double     student_in_house(student student, house house)
 {
-    return (student.house == house) ? 1.0 : 0.0;
+    return (student.hogwartsHouse == house) ? 1.0 : 0.0;
 }

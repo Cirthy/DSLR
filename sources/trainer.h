@@ -49,8 +49,8 @@ void 		print_student(student* const s);
 
 student* 	get_datas(int const size , const char* const fileName);
 int 		get_size_of_datas(const char* const fileName);
-void        improve_weights(double weights[4][14], student* student, int m);
-void    improve_thetas(double thetas[14], student* students, int m);
+void        improve_weights(double weights[4][14], student* students, int m);
+void        improve_thetas(double thetas[14], student* students, int m);
 
 
 // UTIL.CPP ///////////////

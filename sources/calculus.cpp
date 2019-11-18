@@ -9,8 +9,8 @@ double  cost(double* theta, student* students, int m, house house)
     s = 0;
     for(int i = 0 ; i < m ; i++)
     {
-        buf = prob(theta, (student[i]).notes);
-        if((student[i]).house == house)
+        buf = prob(theta, (students[i]).notes);
+        if((students[i]).house == house)
             s += log(buf);
         else
             s += log(1 - buf);
@@ -38,8 +38,7 @@ double  partial_derivative(int j, double* theta, student* students, int m, house
     if(j == 0)
         note = 1;
     else
-        note = (student[i]).notes[j];
-        note =
+        note = (students[i]).notes[j];
     s = 0;
     for(int i = 0 ; i < m ; i++)
         s += (prob(theta, note) - student_in_house(students[i], house) * note;
