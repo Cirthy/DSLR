@@ -2,16 +2,14 @@
 #define 	__TRAINER_H__
 
 #define 	DATAS_PATHFILE 		"../resources/dataset_train.csv"
+#define     ITERATIONS      10
+#define     LEARNING_RATE   0.1
 
 
-#include	<stdio.h>
-#include 	<stdlib.h>
 #include    <math.h>
 #include    <stdio.h>
 #include    <stdlib.h>
 
-#define     ITERATIONS      10
-#define     LEARNING_RATE   0.1
 
 typedef enum hand 		{ Right , Left } hand;
 typedef enum house 		{ Ravenclaw , Slytherin , Gryffindor , Hufflepuff } house;
@@ -39,6 +37,7 @@ typedef struct student
 // MANAGMENT.CPP //////////
 
 void 		get_string_until_comma(FILE* const fd , char* str);
+void        init_weights(double weights[4][14]);
 void 		print_house(student* const s);
 void 		print_best_hand(student* const s);
 void 		print_birthday_date(student* const s);
@@ -50,6 +49,8 @@ void 		print_student(student* const s);
 
 student* 	get_datas(int const size , const char* const fileName);
 int 		get_size_of_datas(const char* const fileName);
+void        improve_weights(double weights[4][14], student* student, int m);
+void    improve_thetas(double thetas[14], student* students, int m);
 
 
 // UTIL.CPP ///////////////
@@ -59,6 +60,7 @@ double 		max(student* students, int size, features feature);
 double 		count(student* students, int size, features feature);
 double 		mean(student* students, int size, features feature);
 double 		std_d(student* students, int size, features feature);
+double      student_in_house(student student, house house);
 
 
 // CALCULUS.CPP

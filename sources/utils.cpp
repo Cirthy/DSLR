@@ -68,3 +68,8 @@ double std_d(student* students, int size, features feature)
 	sum /= size;
 	return sqrt(sum);
 }
+
+double     student_in_house(student student, house house)
+{
+    return (student.house == house) ? 1.0 : 0.0;
+}

@@ -118,3 +118,21 @@ int 		get_size_of_datas(const char* const fileName)
 	return size;
 }
 
+
+void    improve_weights(double weights[4][14], student* student, int m)
+{
+    for(int house = 0 ; house < 4 ; house++)
+        improve_thetas(weights[house], students, m);
+}
+
+
+void    improve_thetas(double thetas[14], student* students, int m)
+{
+    double  tmp[14];
+    int     i;
+
+    for(i = 0 ; i < 14 ; i++)
+        tmp[i] = thetas[i];
+    for(i = 0 ; i < 14 ; i++)
+        thetas[i] -= LEARNING_RATE * partial_derivative(i, tmp, students, m, house);
+}

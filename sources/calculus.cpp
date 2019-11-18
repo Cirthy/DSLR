@@ -33,9 +33,15 @@ double  prob(double* theta, double notes[13])
 double  partial_derivative(int j, double* theta, student* students, int m, house house)
 {
     double  s;
+    double  note;
 
+    if(j == 0)
+        note = 1;
+    else
+        note = (student[i]).notes[j];
+        note =
     s = 0;
     for(int i = 0 ; i < m ; i++)
-        s += (prob(theta, (student[i]).notes) - (((students[i].house == house) ? 1 : 0)) * (student[i]).notes[j];
+        s += (prob(theta, note) - student_in_house(students[i], house) * note;
     return s / m;
 }

@@ -14,6 +14,14 @@ void 		get_string_until_comma(FILE* const fd , char* str)
 }
 
 
+void        init_weights(double weights[4][14])
+{
+    for(int i = 0 ; i < 4 ; i++)
+        for(int j = 0 ; j < 14 ; j++)
+            weights[i][j] = 0;
+}
+
+
 void 		print_house(student* const s)
 {
 	switch (s->hogwartsHouse)
@@ -32,6 +40,7 @@ void 		print_house(student* const s)
 			break;
 	}
 }
+
 
 void 		print_best_hand(student* const s)
 {

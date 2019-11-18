@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 
 	init_weights(weights);
     for(int i = 0 ; i < ITERATIONS ; i++)
-        improve_weights();
+        improve_weights(weights, students, size);
 
 	return 0;
 }
