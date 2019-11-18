@@ -4,6 +4,8 @@
 #define 	DATAS_PATHFILE 		"../resources/dataset_train.csv"
 
 #include    <math.h>
+#include    <stdio.h>
+#include    <stdlib.h>
 
 #define     ITERATIONS      10
 #define     LEARNING_RATE   0.1
