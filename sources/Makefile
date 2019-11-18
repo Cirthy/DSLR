@@ -4,7 +4,7 @@ CC = g++
 
 CFLAGS = ##-Wall -Wextra -Werror
 
-SRCS = trainer.cpp managment.cpp utils.cpp
+SRCS = trainer.cpp managment.cpp utils.cpp calculus.cpp
 
 all : $(NAME)
 
