@@ -35,7 +35,7 @@ typedef struct student
 void 		get_string_until_comma(FILE* const fd , char* str);
 void 		print_house(student* const s);
 void 		print_best_hand(student* const s);
-void 		print_birday_date(student* const s);
+void 		print_birthday_date(student* const s);
 
 void 		print_student(student* const s);
 

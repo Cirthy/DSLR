@@ -42,7 +42,7 @@ student* 	get_datas(int const size , const char* const fileName)
 	datas = (student*)malloc(size*sizeof(student));
 
 	fscanf(fd, "Index,Hogwarts House,First Name,Last Name,Birthday,Best Hand,Arithmancy,Astronomy,Herbology,Defense Against the Dark Arts,Divination,Muggle Studies,Ancient Runes,History of Magic,Transfiguration,Potions,Care of Magical Creatures,Charms,Flying\n");
-	for(int i = 0 ; i < 1 ; i++)
+	for(int i = 0 ; i < size ; i++)
 	{
 		fscanf(fd , "%d,"  , &index);
  		get_string_until_comma(fd , hogwartsHouse);

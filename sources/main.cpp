@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
 
 	//printf("Student number : %d\n", size);
 
-	print_student(&(students[0]));
+	print_student(&(students[size-1]));
 
 	//printf("")
 
