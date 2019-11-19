@@ -11,26 +11,55 @@
 #include    <stdlib.h>
 
 
-typedef enum hand 		{ Right , Left } hand;
-typedef enum house 		{ Ravenclaw = 0 , Slytherin , Gryffindor , Hufflepuff } house;
-typedef enum features 	{ arithmancy , astronomy , herbology , defenseAgainstTheDarkArts , divination , muggleStudies , ancientRunes , historyOfMagic , transfiguration , potions , careOfMagicalCreatures , charms , flying } features;
+typedef enum Hand {
+	Right,
+	Left
+}Hand;
 
-typedef struct date
+typedef enum House {
+	Ravenclaw,
+	Slytherin,
+	Gryffindor,
+	Hufflepuff
+} House;
+
+typedef enum Features {
+	Arithmancy,
+	Astronomy,
+	Herbology,
+	DefenseAgainstTheDarkArts,
+	Divination,
+	MuggleStudies,
+	AncientRunes,
+	HistoryOfMagic,
+	Transfiguration,
+	Potions,
+	CareOfMagicalCreatures,
+	Charms,
+	Flying
+}Features;
+
+typedef struct Date
 {
 	int 	day;
 	int 	month;
 	int 	year;
-}date;
+} Date;
 
-typedef struct student
+typedef struct Range {
+    double  min;
+    double  max;
+} Range;
+
+typedef struct Student
 {
-	house 	hogwartsHouse;
+	House 	hogwartsHouse;
 	char 	firstName[21];
 	char 	lastName[21];
-	date 	birthday;
-	hand 	bestHand;
+	Date 	birthday;
+	Hand 	bestHand;
 	double 	notes[13];
-} student;
+} Student;
 
 
 
@@ -38,38 +67,38 @@ typedef struct student
 
 void 		get_string_until_comma(FILE* const fd , char* str);
 void        init_weights(double weights[4][14]);
-void 		print_house(student* const s);
-void 		print_best_hand(student* const s);
-void 		print_birthday_date(student* const s);
+void 		print_house(Student* const s);
+void 		print_best_hand(Student* const s);
+void 		print_birthday_date(Student* const s);
 
-void 		print_student(student* const s);
+void 		print_student(Student* const s);
 
 
 // TRAINER.CPP ////////////
 
-student* 	get_datas(int const size , const char* const fileName);
+Student* 	get_datas(int const size , const char* const fileName);
 int 		get_size_of_datas(const char* const fileName);
-void        improve_weights(double weights[4][14], student* students, int m);
-void        improve_thetas(double thetas[14], student* students, int m, house house);
+void        improve_weights(double weights[4][14], Student* students, int m);
+void        improve_thetas(double thetas[14], Student* students, int m, House house);
 
 
 // UTIL.CPP ///////////////
 
-double 		min(student* students, int size, features feature);
-double 		max(student* students, int size, features feature);
-double 		count(student* students, int size, features feature);
-double 		mean(student* students, int size, features feature);
-double 		std_d(student* students, int size, features feature);
-double      student_in_house(student student, house house);
-void		normalize(student* students, int m, double ranges[2][13]);
-void		unnormalize(double weights[4][14], double ranges[2][13]);
+double 		min(Student* students, int size, Features feature);
+double 		max(Student* students, int size, Features feature);
+double 		mean(Student* students, int size, Features feature);
+double 		std_d(Student* students, int size, Features feature);
+double      student_in_house(Student student, House house);
+Range       *get_range(Student* students, int size);
+void		normalize(Student* students, int m, Range * ranges);
+void		unnormalize(double weights[4][14], Range * ranges);
 
 
 // CALCULUS.CPP
 
-double		cost(double* theta, student* students, int m, house house);
+double		cost(double* theta, Student* students, int m, House house);
 double		prob(double* theta, double notes[13]);
-double		partial_derivative(int j, double* theta, student* students, int m, house house);
+double		partial_derivative(int j, double* theta, Student* students, int m, House house);
 
 
 

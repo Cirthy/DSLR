@@ -1,7 +1,7 @@
 #include    "trainer.h"
 
 
-double  cost(double* theta, student* students, int m, house house)
+double  cost(double* theta, Student* students, int m, House house)
 {
     double  s;
     double  buf;
@@ -30,7 +30,7 @@ double  prob(double* theta, double notes[13])
 }
 
 
-double  partial_derivative(int j, double* theta, student* students, int m, house house)
+double  partial_derivative(int j, double* theta, Student* students, int m, House house)
 {
     double  s;
     double  note;

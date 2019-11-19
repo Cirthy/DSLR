@@ -3,14 +3,16 @@
 
 
 
-int main(int argc, char const *argv[])
+int main()
 {
 	int 		size;
-	student* 	students;
+	Student* 	students;
+    Range*      ranges;
 	double      weights[4][14];
 
 	size = get_size_of_datas(DATAS_PATHFILE);
 	students = get_datas(size , DATAS_PATHFILE);
+	ranges = get_range(students, size);
 	normalize(students, size, ranges);
 
 	init_weights(weights);
@@ -22,7 +24,8 @@ int main(int argc, char const *argv[])
         	printf("%lf\n", weights[0][w]);
 
     }
-    unnomarlize(weights, ranges);
-
+    unnormalize(weights, ranges);
+    free(students);
+    free(ranges);
 	return 0;
 }

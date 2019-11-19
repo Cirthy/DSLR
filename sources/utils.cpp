@@ -2,7 +2,7 @@
 
 
 
-double min(student* students, int size, features feature)
+double min(Student* students, int size, Features feature)
 {
 	double 	min = students[0].notes[feature];
 	for(int i = 0 ; i < size ; i++)
@@ -11,7 +11,7 @@ double min(student* students, int size, features feature)
 	return min;
 }
 
-double max(student* students, int size, features feature)
+double max(Student* students, int size, Features feature)
 {
 	double 	max = students[0].notes[feature];
 	for(int i = 0 ; i < size ; i++)
@@ -38,15 +38,14 @@ float third_qt(float * sorted, int size) {
 
 	return sorted[qt_index]
 }
-*/
 
-
-double count(student* students, int size, features feature)
+double count(Student* students, int size, Features feature)
 {
-	return size; 
+	return size;
 }
+ */
 
-double mean(student* students, int size, features feature)
+double mean(Student* students, int size, Features feature)
 {
 	double 	sum = 0.0;
 
@@ -56,7 +55,7 @@ double mean(student* students, int size, features feature)
 	return sum / size;
 }
 
-double std_d(student* students, int size, features feature)
+double std_d(Student* students, int size, Features feature)
 {
 	float 	sum = 0.0;
 	float 	m = mean(students, size, feature);
@@ -67,33 +66,33 @@ double std_d(student* students, int size, features feature)
 	return sqrt(sum);
 }
 
-double     student_in_house(student student, house house)
+double     student_in_house(Student student, House house)
 {
     return (student.hogwartsHouse == house) ? 1.0 : 0.0;
 }
 
-double **get_range(student * students, int size) {
-	double ranges[13][2];
+Range *get_range(Student * students, int size) {
+	Range * ranges = (Range *)malloc(13 * sizeof(Range));
 	int i = 0;
 
 	while (i < 13) {
-		ranges[i][0] = min(students, size, i);
-		ranges[i][1] = max(students, size, i);
+		ranges[i].min = min(students, size, (Features)i);
+		ranges[i].max = max(students, size, (Features)i);
 		i++;
 	}
 
 	return ranges;
 }
 
-void		normalize(student* students, int m, double ranges[2][13])
+void		normalize(Student* students, int m, Range * ranges)
 {
 	for(int i = 0 ; i < m ; i++)
 		for(int j = 0 ; j < 13 ; j++)
-			((students[i]).notes[j] = (students[i]).notes[j] - ranges[0][i]) / (ranges[1][i] - ranges[0][i]);
+			(students[i]).notes[j] = (students[i]).notes[j] - ranges[i].min / (ranges[i].max - ranges[i].min);
 }
 
 
-void		unnormalize(double weights[4][14], double ranges[2][13])
+void		unnormalize(double weights[4][14], Range * ranges)
 {
 	double	tmp[4][14];
 	int		i;
@@ -108,8 +107,8 @@ void		unnormalize(double weights[4][14], double ranges[2][13])
 		weights[i][0] = tmp[i][0];
 		for(j = 1 ; j < 14 ; j++)
 		{
-			weights[i][0] -= tmp[i][j] * ranges[0][i] / (ranges[1][i] - ranges[0][i]);
-			weights[i][j] = tmp[i][j] / (ranges[1][i] - ranges[0][i]);
+			weights[i][0] -= tmp[i][j] * ranges[i].min / (ranges[i].max - ranges[i].min);
+			weights[i][j] = tmp[i][j] / (ranges[i].max - ranges[i].min);
 		}
 	}
 }

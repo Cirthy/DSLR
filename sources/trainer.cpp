@@ -2,41 +2,41 @@
 
 
 
-void 		print_student(student* const s)
+void 		print_student(Student* const s)
 {
 	printf("%s %s\n",s->firstName,s->lastName);
 	print_house(s);
 	
 	printf("\nschool notes :\n");
-	printf("                   Arithmancy : %f\n" , s->notes[arithmancy]);
-	printf("                    Astronomy : %f\n" , s->notes[astronomy]);
-	printf("                    Herbology : %f\n" , s->notes[herbology]);
-	printf("Defense Against the Dark Arts : %f\n" , s->notes[defenseAgainstTheDarkArts]);
-	printf("                   Divination : %f\n" , s->notes[divination]);
-	printf("               Muggle Studies : %f\n" , s->notes[muggleStudies]);
-	printf("                Ancient Runes : %f\n" , s->notes[ancientRunes]);
-	printf("             History of Magic : %f\n" , s->notes[historyOfMagic]);
-	printf("              Transfiguration : %f\n" , s->notes[transfiguration]);
-	printf("                      Potions : %f\n" , s->notes[potions]);
-	printf("    Care of Magical Creatures : %f\n" , s->notes[careOfMagicalCreatures]);
-	printf("                       Charms : %f\n" , s->notes[charms]);
-	printf("                       Flying : %f\n" , s->notes[flying]);
+	printf("                   Arithmancy : %f\n" , s->notes[Arithmancy]);
+	printf("                    Astronomy : %f\n" , s->notes[Astronomy]);
+	printf("                    Herbology : %f\n" , s->notes[Herbology]);
+	printf("Defense Against the Dark Arts : %f\n" , s->notes[DefenseAgainstTheDarkArts]);
+	printf("                   Divination : %f\n" , s->notes[Divination]);
+	printf("               Muggle Studies : %f\n" , s->notes[MuggleStudies]);
+	printf("                Ancient Runes : %f\n" , s->notes[AncientRunes]);
+	printf("             History of Magic : %f\n" , s->notes[HistoryOfMagic]);
+	printf("              Transfiguration : %f\n" , s->notes[Transfiguration]);
+	printf("                      Potions : %f\n" , s->notes[Potions]);
+	printf("    Care of Magical Creatures : %f\n" , s->notes[CareOfMagicalCreatures]);
+	printf("                       Charms : %f\n" , s->notes[Charms]);
+	printf("                       Flying : %f\n" , s->notes[Flying]);
 }
 
 
-student* 	get_datas(int const size , const char* const fileName)
+Student* 	get_datas(int const size , const char* const fileName)
 {
 	FILE* 		fd=NULL;
 	int 		index;
 	char 		bestHand[6];
 	char 		hogwartsHouse[11];
-	student*	datas;
+	Student*	datas;
 
 	fd = fopen(fileName, "r");
 	if (not fd)
 		return NULL;
 
-	datas = (student*)malloc(size*sizeof(student));
+	datas = (Student*)malloc(size*sizeof(Student));
 
 	fscanf(fd, "Index,Hogwarts House,First Name,Last Name,Birthday,Best Hand,Arithmancy,Astronomy,Herbology,Defense Against the Dark Arts,Divination,Muggle Studies,Ancient Runes,History of Magic,Transfiguration,Potions,Care of Magical Creatures,Charms,Flying\n");
 	for(int i = 0 ; i < size ; i++)
@@ -49,19 +49,19 @@ student* 	get_datas(int const size , const char* const fileName)
 		fscanf(fd , "%d-"  , &(datas[i].birthday.month));
 		fscanf(fd , "%d,"  , &(datas[i].birthday.day));
  		get_string_until_comma(fd , bestHand);
-		fscanf(fd , "%lf,"  , &(datas[i].notes[arithmancy]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[astronomy]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[herbology]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[defenseAgainstTheDarkArts]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[divination]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[muggleStudies]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[ancientRunes]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[historyOfMagic]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[transfiguration]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[potions]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[careOfMagicalCreatures]));
-		fscanf(fd , "%lf,"  , &(datas[i].notes[charms]));
-		fscanf(fd , "%lf\n" , &(datas[i].notes[flying]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Arithmancy]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Astronomy]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Herbology]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[DefenseAgainstTheDarkArts]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Divination]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[MuggleStudies]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[AncientRunes]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[HistoryOfMagic]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Transfiguration]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Potions]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[CareOfMagicalCreatures]));
+		fscanf(fd , "%lf,"  , &(datas[i].notes[Charms]));
+		fscanf(fd , "%lf\n" , &(datas[i].notes[Flying]));
 
 		switch (hogwartsHouse[0])
 		{
@@ -119,14 +119,14 @@ int 		get_size_of_datas(const char* const fileName)
 }
 
 
-void    improve_weights(double weights[4][14], student* students, int m)
+void    improve_weights(double weights[4][14], Student* students, int m)
 {
     for(int h = 0 ; h < 4 ; h++)
-        improve_thetas(weights[h], students, m, (house)h);
+        improve_thetas(weights[h], students, m, (House)h);
 }
 
 
-void    improve_thetas(double thetas[14], student* students, int m, house house)
+void    improve_thetas(double thetas[14], Student* students, int m, House house)
 {
     double  tmp[14];
     int     i;

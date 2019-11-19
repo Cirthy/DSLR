@@ -22,7 +22,7 @@ void        init_weights(double weights[4][14])
 }
 
 
-void 		print_house(student* const s)
+void 		print_house(Student* const s)
 {
 	switch (s->hogwartsHouse)
 	{
@@ -42,7 +42,7 @@ void 		print_house(student* const s)
 }
 
 
-void 		print_best_hand(student* const s)
+void 		print_best_hand(Student* const s)
 {
 	switch (s->bestHand)
 	{
@@ -56,7 +56,7 @@ void 		print_best_hand(student* const s)
 }
 
 
-void 		print_birthday_date(student* const s)
+void 		print_birthday_date(Student* const s)
 {
 	printf("Born the %d ", s->birthday.day);
 	switch ((s->birthday).month)

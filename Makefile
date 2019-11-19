@@ -28,7 +28,8 @@ NAME =          trainer
 SRC_DIR =       sources
 
 # sources
-SRC_LIST =      trainer.cpp\
+SRC_LIST =      main.cpp\
+                trainer.cpp\
                 managment.cpp\
                 utils.cpp\
                 calculus.cpp
@@ -41,7 +42,7 @@ SRCS =	$(addprefix $(SRC_DIR)/, $(SRC_LIST))
 all : $(NAME)
 
 $(NAME) : 
-	$(CC) $(CFLAGS) main.cpp $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	 @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$(NAME) "$(CLEAR)$(LIG)"
 
 fclean :
