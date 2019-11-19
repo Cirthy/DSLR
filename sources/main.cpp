@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
 
 	size = get_size_of_datas(DATAS_PATHFILE);
 	students = get_datas(size , DATAS_PATHFILE);
+	normalize(students, size, ranges);
 
 	init_weights(weights);
     for(int i = 0 ; i < ITERATIONS ; i++)
@@ -21,7 +22,7 @@ int main(int argc, char const *argv[])
         	printf("%lf\n", weights[0][w]);
 
     }
-
+    unnomarlize(weights, ranges);
 
 	return 0;
 }

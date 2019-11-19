@@ -84,3 +84,32 @@ double **get_range(student * students, int size) {
 
 	return ranges;
 }
+
+void		normalize(student* students, int m, double ranges[2][13])
+{
+	for(int i = 0 ; i < m ; i++)
+		for(int j = 0 ; j < 13 ; j++)
+			((students[i]).notes[j] = (students[i]).notes[j] - ranges[0][i]) / (ranges[1][i] - ranges[0][i]);
+}
+
+
+void		unnormalize(double weights[4][14], double ranges[2][13])
+{
+	double	tmp[4][14];
+	int		i;
+	int		j;
+
+	for(i = 0 ; i < 4 ; i++)
+		for(j = 0 ; j < 14 ; j++)
+			tmp[i][j] = weights[i][j];
+
+	for(i = 0 ; i < 4 ; i++)
+	{
+		weights[i][0] = tmp[i][0];
+		for(j = 1 ; j < 14 ; j++)
+		{
+			weights[i][0] -= tmp[i][j] * ranges[0][i] / (ranges[1][i] - ranges[0][i]);
+			weights[i][j] = tmp[i][j] / (ranges[1][i] - ranges[0][i]);
+		}
+	}
+}
