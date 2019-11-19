@@ -61,13 +61,15 @@ double 		count(student* students, int size, features feature);
 double 		mean(student* students, int size, features feature);
 double 		std_d(student* students, int size, features feature);
 double      student_in_house(student student, house house);
+void		normalize(student* students, int m, double ranges[2][13]);
+void		unnormalize(double weights[4][14], double ranges[2][13]);
 
 
 // CALCULUS.CPP
 
-double  cost(double* theta, student* students, int m, house house);
-double  prob(double* theta, double notes[13]);
-double  partial_derivative(int j, double* theta, student* students, int m, house house);
+double		cost(double* theta, student* students, int m, house house);
+double		prob(double* theta, double notes[13]);
+double		partial_derivative(int j, double* theta, student* students, int m, house house);
 
 
 
