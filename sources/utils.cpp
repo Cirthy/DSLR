@@ -71,3 +71,16 @@ double     student_in_house(student student, house house)
 {
     return (student.hogwartsHouse == house) ? 1.0 : 0.0;
 }
+
+double **get_range(student * students, int size) {
+	double ranges[13][2];
+	int i = 0;
+
+	while (i < 13) {
+		ranges[i][0] = min(students, size, i);
+		ranges[i][1] = max(students, size, i);
+		i++;
+	}
+
+	return ranges;
+}
