@@ -6,8 +6,9 @@ double min(Student* students, int size, Features feature)
 {
 	double 	min = students[0].notes[feature];
 	for(int i = 0 ; i < size ; i++)
-		if (students[i].notes[feature] < min)
-			min = students[i].notes[feature];
+		if (students[i].notes[feature] < min) {
+            min = students[i].notes[feature];
+        }
 	return min;
 }
 
@@ -72,13 +73,12 @@ double     student_in_house(Student student, House house)
 }
 
 Range *get_range(Student * students, int size) {
-	Range * ranges = (Range *)malloc(13 * sizeof(Range));
-	int i = 0;
+	Range *ranges;
+    ranges = (Range *)malloc(13 * sizeof(Range));
 
-	while (i < 13) {
+	for (int i = 0; i < 13; i++) {
 		ranges[i].min = min(students, size, (Features)i);
 		ranges[i].max = max(students, size, (Features)i);
-		i++;
 	}
 
 	return ranges;

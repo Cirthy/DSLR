@@ -1,7 +1,7 @@
 #ifndef 	__TRAINER_H__
 #define 	__TRAINER_H__
 
-#define 	DATAS_PATHFILE 		"../resources/dataset_train.csv"
+#define 	DATAS_PATHFILE 		"resources/dataset_train.csv"
 #define     ITERATIONS      10
 #define     LEARNING_RATE   0.1
 
