@@ -100,3 +100,25 @@ void 		print_birthday_date(Student* const s)
 	}
 	printf(" %d.", s->birthday.year);
 }
+
+
+void 		print_student(Student* const s)
+{
+	printf("%s %s\n",s->firstName,s->lastName);
+	print_house(s);
+	
+	printf("\nschool notes :\n");
+	printf("                   Arithmancy : %f\n" , s->notes[Arithmancy]);
+	printf("                    Astronomy : %f\n" , s->notes[Astronomy]);
+	printf("                    Herbology : %f\n" , s->notes[Herbology]);
+	printf("Defense Against the Dark Arts : %f\n" , s->notes[DefenseAgainstTheDarkArts]);
+	printf("                   Divination : %f\n" , s->notes[Divination]);
+	printf("               Muggle Studies : %f\n" , s->notes[MuggleStudies]);
+	printf("                Ancient Runes : %f\n" , s->notes[AncientRunes]);
+	printf("             History of Magic : %f\n" , s->notes[HistoryOfMagic]);
+	printf("              Transfiguration : %f\n" , s->notes[Transfiguration]);
+	printf("                      Potions : %f\n" , s->notes[Potions]);
+	printf("    Care of Magical Creatures : %f\n" , s->notes[CareOfMagicalCreatures]);
+	printf("                       Charms : %f\n" , s->notes[Charms]);
+	printf("                       Flying : %f\n" , s->notes[Flying]);
+}

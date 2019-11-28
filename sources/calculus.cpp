@@ -34,6 +34,7 @@ double  partial_derivative(int j, double* theta, Student* students, int m, House
 {
     double  s;
     double  note;
+    int     count;
 
     s = 0;
     for(int i = 0 ; i < m ; i++)
@@ -42,7 +43,10 @@ double  partial_derivative(int j, double* theta, Student* students, int m, House
             note = 1;
         else
             note = (students[i]).notes[j];
-        s += (prob(theta, (students[i]).notes)) - student_in_house(students[i], house) * note;
+        if(note == 0)
+            count++;
+        else
+            s += ((prob(theta, (students[i]).notes)) - student_in_house(students[i], house)) * note;
     }
-    return s / m;
+    return s / (m - count);
 }

@@ -6,7 +6,7 @@ double min(Student* students, int size, Features feature)
 {
 	double 	min = students[0].notes[feature];
 	for(int i = 0 ; i < size ; i++)
-		if (students[i].notes[feature] < min) {
+		if (students[i].notes[feature]!=0.0 && students[i].notes[feature] < min) {
             min = students[i].notes[feature];
         }
 	return min;
@@ -16,7 +16,7 @@ double max(Student* students, int size, Features feature)
 {
 	double 	max = students[0].notes[feature];
 	for(int i = 0 ; i < size ; i++)
-		if (students[i].notes[feature] > max)
+		if (students[i].notes[feature]!=0.0 && students[i].notes[feature] > max)
 			max = students[i].notes[feature];
 	return max;
 }
@@ -72,7 +72,7 @@ double     student_in_house(Student student, House house)
     return (student.hogwartsHouse == house) ? 1.0 : 0.0;
 }
 
-Range *get_range(Student * students, int size) {
+Range		*get_range(Student * students, int size) {
 	Range *ranges;
     ranges = (Range *)malloc(13 * sizeof(Range));
 
@@ -84,11 +84,11 @@ Range *get_range(Student * students, int size) {
 	return ranges;
 }
 
-void		normalize(Student* students, int m, Range * ranges)
+void		normalize(Student* students, int m, Range *ranges)
 {
 	for(int i = 0 ; i < m ; i++)
 		for(int j = 0 ; j < 13 ; j++)
-			(students[i]).notes[j] = (students[i]).notes[j] - ranges[i].min / (ranges[i].max - ranges[i].min);
+			(students[i]).notes[j] = ((students[i]).notes[j] - ranges[j].min) / (ranges[j].max - ranges[j].min);
 }
 
 
