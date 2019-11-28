@@ -26,7 +26,7 @@ double  prob(double* theta, double notes[13])
     p = theta[0];
     for(int i = 0 ; i < 13 ; i++)
         p += theta[i + 1] * notes[i];
-    return 1 / 1 + exp(-p);
+    return 1 / (1 + exp(-p));
 }
 
 
@@ -36,13 +36,14 @@ double  partial_derivative(int j, double* theta, Student* students, int m, House
     double  note;
     int     count;
 
+    count = 0;
     s = 0;
     for(int i = 0 ; i < m ; i++)
     {
         if(j == 0)
             note = 1;
         else
-            note = (students[i]).notes[j];
+            note = (students[i]).notes[j-1];
         if(note == 0)
             count++;
         else

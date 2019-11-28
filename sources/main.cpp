@@ -17,7 +17,7 @@ int main()
     for(int i = 0 ; i < ITERATIONS ; i++)
     {
         improve_weights(weights, students, size);
-        if(i % 1000 == 0){
+        if(i %1000 == 0){
             printf("\ntour %d\n",i);
             for(int w = 0 ; w < 14 ; w++)
             	printf("%lf\n", weights[0][w]);
