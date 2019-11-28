@@ -32,7 +32,10 @@ SRC_LIST =      main.cpp\
                 trainer.cpp\
                 managment.cpp\
                 utils.cpp\
-                calculus.cpp
+                calculus.cpp\
+                writer.cpp\
+                reader.cpp\
+                predict.cpp
 
 # paths
 SRCS =	$(addprefix $(SRC_DIR)/, $(SRC_LIST))
