@@ -9,7 +9,10 @@ set(SOURCE_FILES
         sources/trainer.cpp
         sources/managment.cpp
         sources/calculus.cpp
-        sources/trainer.h sources/writer.cpp sources/predict.cpp sources/reader.cpp)
+        sources/trainer.h
+        sources/writer.cpp
+        sources/predict.cpp
+        sources/reader.cpp)
 
 
 add_executable(trainer ${SOURCE_FILES})

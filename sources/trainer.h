@@ -107,6 +107,8 @@ void        write(double weights[4][14]);
 
 // PREDICT.CPP
 
+House       estimate_house(Student student, std::vector<std::vector<double>> weights);
+
 // READER.CPP
 
 std::vector<std::vector<double>> deser_weights();

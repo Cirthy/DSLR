@@ -1,3 +1,4 @@
+#include <cstring>
 #include	"trainer.h"
 
 
@@ -9,12 +10,17 @@ int main(int ac, char **av)
         printf("-p pour predict, -t pour train");
         return 0;
     }
-    else if (av[1] == "-p") {
+    else if (strncmp(av[1],"-p", 2) == 0) {
         std::vector<Student> students = deser_new_studs();
         std::vector<std::vector<double>> weights = deser_weights();
-        //TODO
+        std::vector<House> houses;
+
+        for(int i = 0; i < (int)students.size(); i++) {
+            houses.push_back(estimate_house(students[i], weights));
+        }
+        //TODO : ecrire fichier houses
     }
-    else if (av[1] == "-t") {
+    else if (strncmp(av[1], "-t", 2) == 0) {
         double      weights[4][14];
         Student* 	students;
         Range*      ranges;

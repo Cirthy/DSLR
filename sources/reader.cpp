@@ -34,6 +34,7 @@ std::vector<std::vector<double>> deser_weights() {
 Student     tok_to_new_student(std::vector<char *> tokens) {
     Student student;
 
+    student.hogwartsHouse = Gryffindor;
     strncpy(student.firstName, tokens[2], 21);
     strncpy(student.lastName, tokens[3], 21);
     student.birthday = deser_date(tokens[4]);
