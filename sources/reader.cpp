@@ -35,32 +35,45 @@ Student     tok_to_new_student(std::vector<char *> tokens) {
     Student student;
 
     student.hogwartsHouse = Gryffindor;
-    strncpy(student.firstName, tokens[2], 21);
-    strncpy(student.lastName, tokens[3], 21);
-    student.birthday = deser_date(tokens[4]);
-    student.bestHand = deser_hand(tokens[5]);
+    strncpy(student.firstName, tokens[1], 21);
+    strncpy(student.lastName, tokens[2], 21);
+    student.birthday = deser_date(tokens[3]);
+    student.bestHand = deser_hand(tokens[4]);
     for(int i = 0; i < 13; i++) {
-        student.notes[i] = strtod(tokens[i+6], nullptr);
+        student.notes[i] = strtod(tokens[i+5], nullptr);
     }
 
     return student;
 }
-
-
 
 std::vector<Student>    deser_new_studs() {
     std::string line;
     std::vector<char*> tokens;
     std::ifstream file(TESTS_PATHFILE);
     std::vector<Student> students;
+    Student stud;
 
     if (file.is_open()) {
+        getline(file, line);//discard first line
         while(getline(file, line)){
-            tokens.push_back(strtok(const_cast<char *>(line.c_str()), ";")); //Index column
+            tokens.push_back(strtok(const_cast<char *>(line.c_str()), ",")); //Index column
             while(tokens.back() != nullptr) {
-                tokens.push_back(strtok(nullptr, ";"));
+                tokens.push_back(strtok(nullptr, ","));
             }
-            students.push_back(tok_to_new_student(tokens));
+            for(int i = 0; line[i]; i++) {
+                std::vector<char *>::iterator it = tokens.begin();
+                int pos = 0;
+                if(line[i] == ','){
+                    pos++;
+                    if (line[i+1] == ',' && pos != 1) {
+                        tokens.insert(it+pos, const_cast<char *>("0"));
+                    }
+                }
+            }
+            stud = tok_to_new_student(tokens);
+            tokens.clear();
+            students.push_back(stud);
+            printf("%lu\n", students.size());
         }
         file.close();
     }
