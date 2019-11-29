@@ -3,26 +3,71 @@
 #include <cstring>
 #include "trainer.h"
 
-/*
-Student*    get_new_studs() {
+std::vector<double> deser_thetas(std::string line) {
+    std::vector<double> thetas;
+    std::vector<char *> tokens;
+
+    tokens.push_back(strtok(const_cast<char *>(line.c_str()), ";"));
+    thetas.push_back(atoi(tokens.back()));
+    while(tokens.back() != nullptr) {
+        tokens.push_back(strtok(nullptr, ";"));
+        thetas.push_back(atoi(tokens.back()));
+    }
+
+    return thetas;
+}
+
+std::vector<std::vector<double>> deser_weights() {
     std::string line;
-    char* tok;
-    std::ifstream file("resources/dataset_test.csv");
-    Student* students = NULL;
+    std::vector<std::vector<double>> weights;
+    std::ifstream file(WEIGHTS_PATHFILE);
+
+    if (file.is_open()) {
+        while(getline(file, line)) {
+            weights.push_back(deser_thetas(line));
+        }
+    }
+
+    return weights;
+}
+
+Student     tok_to_new_student(std::vector<char *> tokens) {
+    Student student;
+
+    strncpy(student.firstName, tokens[2], 21);
+    strncpy(student.lastName, tokens[3], 21);
+    student.birthday = deser_date(tokens[4]);
+    student.bestHand = deser_hand(tokens[5]);
+    for(int i = 0; i < 13; i++) {
+        student.notes[i] = strtod(tokens[i+6], nullptr);
+    }
+
+    return student;
+}
+
+
+
+std::vector<Student>    deser_new_studs() {
+    std::string line;
+    std::vector<char*> tokens;
+    std::ifstream file(TESTS_PATHFILE);
+    std::vector<Student> students;
 
     if (file.is_open()) {
         while(getline(file, line)){
-            tok = strtok(const_cast<char *>(line.c_str()), ";"); //Index column
-            while(tok != NULL) {
-
+            tokens.push_back(strtok(const_cast<char *>(line.c_str()), ";")); //Index column
+            while(tokens.back() != nullptr) {
+                tokens.push_back(strtok(nullptr, ";"));
             }
+            students.push_back(tok_to_new_student(tokens));
         }
         file.close();
     }
     else
         std::cout << "cannot open test file" << std::endl;
+
     return students;
-}*///TODO
+}
 
 Student* 	get_datas(int const size , const char* const fileName)
 {
@@ -63,41 +108,44 @@ Student* 	get_datas(int const size , const char* const fileName)
         fscanf(fd , "%lf,"  , &(datas[i].notes[Charms]));
         fscanf(fd , "%lf\n" , &(datas[i].notes[Flying]));
 
-        switch (hogwartsHouse[0])
-        {
-            case 'R' :
-                datas[i].hogwartsHouse = Ravenclaw;
-                break;
-            case 'S' :
-                datas[i].hogwartsHouse = Slytherin;
-                break;
-            case 'G' :
-                datas[i].hogwartsHouse = Gryffindor;
-                break;
-            case 'H' :
-                datas[i].hogwartsHouse = Hufflepuff;
-                break;
-            default:
-                printf("Error in get_datas at student %d to set Hogwarts house.\n" , i);
-                break;
-        }
-
-        switch (bestHand[0])
-        {
-            case 'R' :
-                datas[i].bestHand = Right;
-                break;
-            case 'L' :
-                datas[i].bestHand = Left;
-                break;
-            default:
-                printf("Error in get_datas at student %d to set best hand.\n" , i);
-                break;
-        }
+        datas[i].hogwartsHouse  = deser_house(hogwartsHouse);
+        datas[i].bestHand = deser_hand(bestHand);
     }
     fclose(fd);
 
     return datas;
+}
+
+Date    deser_date(char * str_date) {
+    Date date;
+
+    date.year = atoi(strtok(str_date, "-"));
+    date.month = atoi(strtok(nullptr, "-"));
+    date.day = atoi(strtok(nullptr, "-"));
+
+    return date;
+}
+
+Hand    deser_hand(char * hand) {
+    switch (hand[0]) {
+        case 'L' : return Left;
+        case 'R' : return Right;
+        default:
+            printf("Error in get_datas to set best hand.\n");
+            return Left;
+    }
+}
+
+House   deser_house(char* house) {
+    switch (house[0]) {
+        case 'R' : return Ravenclaw;
+        case 'S' : return Slytherin;
+        case 'G' : return Gryffindor;
+        case 'H' : return Hufflepuff;
+        default:
+            printf("Error in get_datas to set Hogwarts house.\n");
+            return Gryffindor;
+    }
 }
 
 int 		get_size_of_datas(const char* const fileName)

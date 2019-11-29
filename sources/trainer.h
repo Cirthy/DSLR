@@ -2,13 +2,17 @@
 #define 	__TRAINER_H__
 
 #define 	DATAS_PATHFILE 		"resources/dataset_train.csv"
-#define     ITERATIONS      10000
+#define     TESTS_PATHFILE      "resources/dataset_test.csv"
+#define     WEIGHTS_PATHFILE    "resources/weights.csv"
+#define     PREDICS_PATHFILE    "resources/houses.csv"
+#define     EPOCHS      10000
 #define     LEARNING_RATE   0.8
 
 
-#include    <math.h>
-#include    <stdio.h>
-#include    <stdlib.h>
+#include    <cmath>
+#include    <cstdio>
+#include    <cstdlib>
+#include    <vector>
 
 
 typedef enum Hand {
@@ -105,7 +109,11 @@ void        write(double weights[4][14]);
 
 // READER.CPP
 
-Student*    get_new_studs();
+std::vector<std::vector<double>> deser_weights();
+Date        deser_date(char * str_date);
+Hand        deser_hand(char * hand);
+House       deser_house(char * house);
+std::vector<Student>   deser_new_studs();
 Student* 	get_datas(int const size , const char* const fileName);
 int 		get_size_of_datas(const char* const fileName);
 void 		get_string_until_comma(FILE* const fd , char* str);
