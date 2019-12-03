@@ -108,7 +108,6 @@ void		unnormalize(double weights[4][14], Range * ranges)
 		for(j = 1 ; j < 14 ; j++)
 		{
 			weights[i][0] -= tmp[i][j] * ranges[j].min / (ranges[j].max - ranges[j].min);
-			if (j > 0)
 			weights[i][j] = tmp[i][j] / (ranges[j].max - ranges[j].min);
 		}
 	}
