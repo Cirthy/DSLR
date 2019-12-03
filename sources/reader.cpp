@@ -34,11 +34,17 @@ std::vector<std::vector<double>> deser_weights() {
 Student     tok_to_new_student(std::vector<char *> tokens) {
     Student student;
 
+    printf("a\n");
     student.hogwartsHouse = Gryffindor;
+    printf("b\n");
     strncpy(student.firstName, tokens[1], 21);
+    printf("c\n");
     strncpy(student.lastName, tokens[2], 21);
+    printf("d\n");
     student.birthday = deser_date(tokens[3]);
+    printf("e\n");
     student.bestHand = deser_hand(tokens[4]);
+    printf("f\n");
     for(int i = 0; i < 13; i++) {
         student.notes[i] = strtod(tokens[i+5], nullptr);
     }
@@ -52,17 +58,22 @@ std::vector<Student>    deser_new_studs() {
     std::ifstream file(TESTS_PATHFILE);
     std::vector<Student> students;
     Student stud;
+    char * cstr;
 
     if (file.is_open()) {
         getline(file, line);//discard first line
         while(getline(file, line)){
-            tokens.push_back(strtok(const_cast<char *>(line.c_str()), ",")); //Index column
+            cstr = (char *)malloc(line.size());
+            strncpy(cstr, const_cast<char *>(line.c_str()), line.size());
+            tokens.push_back(strtok(const_cast<char *>(cstr), ",")); //Index column
             while(tokens.back() != nullptr) {
                 tokens.push_back(strtok(nullptr, ","));
             }
+            free(cstr);
+            int pos = 0;
             for(int i = 0; line[i]; i++) {
                 std::vector<char *>::iterator it = tokens.begin();
-                int pos = 0;
+
                 if(line[i] == ','){
                     pos++;
                     if (line[i+1] == ',' && pos != 1) {
